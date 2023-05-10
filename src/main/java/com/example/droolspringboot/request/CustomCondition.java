@@ -1,2 +1,6 @@
-package com.example.droolspringboot.request;public class CustomCondition {
+package com.example.droolspringboot.request;
+
+public class CustomCondition {
+
+
 }
