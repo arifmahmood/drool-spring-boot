@@ -5,6 +5,7 @@ import com.example.droolspringboot.model.OrderDiscount;
 import com.example.droolspringboot.model.OrderRequest;
 import org.drools.core.io.impl.ClassPathResource;
 import org.kie.api.runtime.KieSession;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,6 +14,9 @@ import java.io.IOException;
 
 @Service
 public class OrderDiscountService {
+
+    @Value("${rule.path}")
+    private String userBucketPath;
 
     private final DroolsConfig droolsConfig;
 
@@ -25,12 +29,12 @@ public class OrderDiscountService {
 
         OrderDiscount orderDiscount = new OrderDiscount();
         try {
-            KieSession kieSession = droolsConfig.kieContainer().newKieSession();
+            KieSession kieSession = droolsConfig.kieContainer(userBucketPath + "/discount.drl").newKieSession();
             kieSession.setGlobal("orderDiscount", orderDiscount);
             kieSession.insert(orderRequest);
             kieSession.fireAllRules();
             kieSession.dispose();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return orderDiscount;

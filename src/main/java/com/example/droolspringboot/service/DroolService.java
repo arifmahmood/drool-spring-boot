@@ -15,10 +15,10 @@ public class DroolService {
 
     public OrderDiscount createRule(CreateRule createRule) throws IOException {
 
-        File file = new File("/Users/pathao/Desktop/snr/projects/drool-spring-boot/src/main/resources/rules/new-rule.drl");
+        File file = new File("/Users/pathao/Desktop/snr/projects/drool-spring-boot/src/main/resources/rules/"+createRule.getFileName());
         file.createNewFile();
         FileOutputStream fileOutputStream = new FileOutputStream(file);
-        fileOutputStream.write(createRule.getRulesFileData().getBytes());
+        fileOutputStream.write(createRule.getAsFormat().getBytes());
         fileOutputStream.flush();
         fileOutputStream.close();
         return null;
