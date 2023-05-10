@@ -21,10 +21,10 @@ public class CustomRule {
     public String getAsFormat() {
         String delim = "    ";
 
-        String actionStatements ="";
+        StringBuilder actionStatements = new StringBuilder();
 
         for (String action : actions) {
-            actionStatements = delim + delim + action+ ";\n";
+            actionStatements.append(delim).append(delim).append(action).append(";\n");
         }
 
 

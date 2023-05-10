@@ -20,9 +20,9 @@ public class CreateRule {
 
     public String getAsFormat(){
 
-        String rulesStatements = "";
+        StringBuilder rulesStatements = new StringBuilder();
         for (CustomRule rule : rules) {
-            rulesStatements += "\n" +rule.getAsFormat();
+            rulesStatements.append("\n").append(rule.getAsFormat());
         }
 
         String format =
